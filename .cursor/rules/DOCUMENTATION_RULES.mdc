@@ -1,0 +1,12 @@
+---
+title: Documentation Rules
+description: Guidelines for maintaining project documentation. Always enforced.
+alwaysApply: true
+---
+
+1. Update `docs/` when adding features that affect:
+   - Key bindings → `docs/key-bindings.md`
+   - Language support → `docs/supported-languages.md`
+   - External tools → `docs/external-tools.md`
+2. Keep README.md concise; detailed info goes in `docs/`
+3. Maintain both English (`README.md`) and Korean (`README.ko.md`) versions

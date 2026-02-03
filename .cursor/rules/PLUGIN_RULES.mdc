@@ -1,0 +1,23 @@
+---
+title: Plugin Rules
+description: Guidelines for adding and configuring Neovim plugins with lazy.nvim. Always enforced.
+alwaysApply: true
+---
+
+## Adding New Plugins
+
+1. Add plugin spec to the appropriate file in `lua/plugins/`
+2. Use lazy loading when possible (`event`, `cmd`, `ft`, `keys`)
+3. Include `dependencies` if required
+4. Add key mappings in `lua/config/keymaps.lua` with `desc` for which-key
+
+## Plugin Spec Format
+
+```lua
+{
+    "author/plugin-name",
+    event = "VeryLazy",           -- or cmd, ft, keys
+    dependencies = { "dep/name" },
+    opts = {},                    -- or config = function() end
+}
+```

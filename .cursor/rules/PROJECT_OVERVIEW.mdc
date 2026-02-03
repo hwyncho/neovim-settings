@@ -1,0 +1,42 @@
+---
+title: Project Overview
+description: Neovim configuration project structure and overview. Always enforced.
+alwaysApply: true
+---
+
+This is a Neovim configuration project for full-stack developers. It uses:
+
+- **Plugin Manager**: lazy.nvim
+- **Language**: Lua
+- **Formatter**: stylua
+- **Dual Environment**: Pure Neovim and VSCode Neovim extension
+
+## Project Structure
+
+```
+├── init.lua                 # Entry point (lazy.nvim bootstrap)
+├── lua/
+│   ├── config/              # Core settings
+│   │   ├── options.lua      # Vim options
+│   │   ├── keymaps.lua      # Key mappings
+│   │   └── autocmds.lua     # Autocommands
+│   ├── plugins/             # Plugin specifications (lazy.nvim)
+│   │   ├── ui.lua           # UI/theme/statusline
+│   │   ├── lsp.lua          # LSP configuration
+│   │   ├── completion.lua   # Autocompletion
+│   │   ├── navigation.lua   # File/buffer navigation
+│   │   ├── editing.lua      # Editing tools
+│   │   ├── git.lua          # Git integration
+│   │   ├── formatting.lua   # Code formatting
+│   │   ├── linting.lua      # Code linting
+│   │   ├── treesitter.lua   # Syntax parsing
+│   │   ├── debugging.lua    # DAP debugging
+│   │   ├── terminal.lua     # Terminal
+│   │   └── ai.lua           # AI/Claude integration
+│   └── vscode-neovim/       # VSCode Neovim extension settings
+├── docs/                    # Documentation
+│   ├── key-bindings.md      # Key binding reference
+│   ├── supported-languages.md
+│   └── external-tools.md
+└── .stylua.toml             # Lua formatter config
+```

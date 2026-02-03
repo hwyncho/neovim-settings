@@ -1,0 +1,17 @@
+---
+title: Key Mapping Rules
+description: Guidelines for adding key mappings in Neovim. Always enforced.
+alwaysApply: true
+---
+
+1. All custom mappings go in `lua/config/keymaps.lua`
+2. Use `<leader>` prefix for custom mappings
+3. Always include `desc` for which-key integration
+4. Group related mappings under a common prefix:
+   - `<leader>f` - Telescope/find
+   - `<leader>g` - Git
+   - `<leader>b` - Buffer
+   - `<leader>t` - Terminal
+   - `<leader>x` - Trouble/diagnostics
+   - `<leader>a` - AI/Claude
+   - `<leader>d` - Diagnostics

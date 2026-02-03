@@ -1,0 +1,25 @@
+---
+title: Lua Code Style
+description: Lua coding style guidelines based on stylua configuration. Always enforced.
+alwaysApply: true
+---
+
+Follow the stylua configuration (`.stylua.toml`):
+
+- **Column width**: 120
+- **Indent**: 4 spaces
+- **Quotes**: Prefer double quotes
+- **Call parentheses**: None (e.g., `require "plugin"` not `require("plugin")`)
+- **Line endings**: Unix (LF)
+
+Example:
+
+```lua
+-- Good
+local map = vim.keymap.set
+map("n", "<leader>e", "<cmd>Neotree toggle<cr>", { desc = "File Explorer" })
+
+-- Bad
+local map = vim.keymap.set
+map('n', '<leader>e', '<cmd>Neotree toggle<cr>', { desc = 'File Explorer' })
+```
