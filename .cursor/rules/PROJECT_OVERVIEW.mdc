@@ -6,6 +6,7 @@ alwaysApply: true
 
 This is a Neovim configuration project for full-stack developers. It uses:
 
+- **Neovim**: >= 0.12
 - **Plugin Manager**: lazy.nvim
 - **Language**: Lua
 - **Formatter**: stylua
@@ -32,11 +33,49 @@ This is a Neovim configuration project for full-stack developers. It uses:
 │   │   ├── treesitter.lua   # Syntax parsing
 │   │   ├── debugging.lua    # DAP debugging
 │   │   ├── terminal.lua     # Terminal
-│   │   └── ai.lua           # AI/Claude integration
+│   │   ├── ai.lua           # AI/Claude integration
+│   │   └── private.lua      # Private plugins (gitignored)
 │   └── vscode-neovim/       # VSCode Neovim extension settings
+│       ├── config/
+│       │   ├── options.lua  # Vim options
+│       │   ├── keymaps.lua  # Key mappings (surround)
+│       │   └── autocmds.lua # Autocommands
+│       └── plugins/
+│           └── editing.lua  # Comment.nvim, nvim-surround
 ├── docs/                    # Documentation
 │   ├── key-bindings.md      # Key binding reference
 │   ├── supported-languages.md
 │   └── external-tools.md
 └── .stylua.toml             # Lua formatter config
 ```
+
+## Neovim 0.12 API
+
+This project targets Neovim >= 0.12. Use the current APIs:
+
+- `vim.uv` (not `vim.loop`)
+- `vim.diagnostic.jump { count = N }` (not `vim.diagnostic.goto_prev/next`)
+- `vim.lsp.enable("name", false)` (not `:LspStop`)
+- `vim.lsp.config()` + `vim.lsp.enable()` (not `lspconfig.server.setup{}`)
+- `buf = 0` in keymap opts (not `buffer = true`)
+
+## Treesitter
+
+- `nvim-treesitter` uses the `main` branch (not `master`)
+- Parser installation is managed by `lewis6991/ts-install.nvim`
+- Highlighting is enabled via `vim.treesitter.start()` in a FileType autocmd
+- Incremental selection uses built-in `an`/`in` text objects
+
+## Colorscheme
+
+- `vim.g.colorscheme` is set in `lua/config/options.lua`
+- Applied in `init.lua` after lazy.nvim loads plugins via `vim.cmd.colorscheme()`
+- Both colorscheme plugins use `lazy = false, priority = 1000`
+
+## Private Plugin Config
+
+`lua/plugins/private.lua` is gitignored and used for private plugins that should not be committed to the public repository (e.g., paid themes, proprietary tools). This file is optional — the config works without it.
+
+## VSCode Neovim
+
+The `lua/vscode-neovim/` directory contains settings for the VSCode Neovim extension. Only Neovim-native features that are compatible with VSCode are included (e.g., surround, commenting). UI, LSP, completion, git, terminal, and debugging are handled by VSCode.
