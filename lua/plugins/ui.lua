@@ -2,7 +2,8 @@ return {
     {
         "catppuccin/nvim",
         name = "catppuccin",
-        lazy = true,
+        lazy = false,
+        priority = 1000,
         config = function()
             require("catppuccin").setup {
                 flavour = "macchiato", -- latte, frappe, macchiato, mocha
@@ -69,7 +70,8 @@ return {
     {
         "dracula/vim",
         name = "dracula",
-        lazy = true,
+        lazy = false,
+        priority = 1000,
         config = function()
             vim.g.dracula_colorterm = 1
             vim.g.dracula_italic = 1
