@@ -1,11 +1,34 @@
 return {
     {
         "nvim-treesitter/nvim-treesitter",
+        branch = "main",
+        lazy = false,
         build = ":TSUpdate",
-        event = { "BufReadPost", "BufNewFile", "BufWritePre" },
         config = function()
-            require("nvim-treesitter").setup {
-                ensure_installed = {
+            vim.api.nvim_create_autocmd("FileType", {
+                group = vim.api.nvim_create_augroup("TreesitterHighlight", { clear = true }),
+                callback = function() pcall(vim.treesitter.start) end,
+            })
+
+            -- Treesitter-based folding
+            vim.opt.foldmethod = "expr"
+            vim.opt.foldexpr = "v:lua.vim.treesitter.foldexpr()"
+            vim.opt.foldenable = false
+
+            -- Incremental selection keymaps (built-in treesitter node text objects)
+            local map = vim.keymap.set
+            map("n", "<C-space>", "van", { desc = "Init treesitter selection" })
+            map("x", "<C-space>", "an", { desc = "Increment treesitter selection" })
+            map("x", "<bs>", "in", { desc = "Decrement treesitter selection" })
+        end,
+    },
+
+    {
+        "lewis6991/ts-install.nvim",
+        dependencies = { "nvim-treesitter/nvim-treesitter" },
+        config = function()
+            require("ts-install").setup {
+                ensure_install = {
                     "lua",
                     "vim",
                     "vimdoc",
@@ -29,36 +52,12 @@ return {
                 },
                 auto_install = true,
             }
-
-            -- Treesitter-based folding (optional)
-            vim.opt.foldmethod = "expr"
-            vim.opt.foldexpr = "v:lua.vim.treesitter.foldexpr()"
-            vim.opt.foldenable = false
-
-            -- Incremental selection keymaps
-            local map = vim.keymap.set
-            map(
-                "n",
-                "<C-space>",
-                function() require("nvim-treesitter.incremental_selection").init_selection() end,
-                { desc = "Init treesitter selection" }
-            )
-            map(
-                "x",
-                "<C-space>",
-                function() require("nvim-treesitter.incremental_selection").node_incremental() end,
-                { desc = "Increment treesitter selection" }
-            )
-            map(
-                "x",
-                "<bs>",
-                function() require("nvim-treesitter.incremental_selection").node_decremental() end,
-                { desc = "Decrement treesitter selection" }
-            )
         end,
     },
+
     {
         "nvim-treesitter/nvim-treesitter-textobjects",
+        branch = "main",
         event = { "BufReadPost", "BufNewFile" },
         dependencies = { "nvim-treesitter/nvim-treesitter" },
         config = function()
