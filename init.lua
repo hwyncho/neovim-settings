@@ -13,7 +13,7 @@ vim.opt.rtp:prepend(lazypath)
 
 if vim.g.vscode then
     require "vscode-neovim.config.options"
-    -- require "vscode-neovim.config.keymaps"
+    require "vscode-neovim.config.keymaps"
     require "vscode-neovim.config.autocmds"
 
     require("lazy").setup({ import = "vscode-neovim.plugins" }, {
