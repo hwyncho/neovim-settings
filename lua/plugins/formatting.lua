@@ -11,11 +11,11 @@ return {
                         return nil
                     end
                     local max = 200 * 1024
-                    local ok, stats = pcall(vim.loop.fs_stat, vim.api.nvim_buf_get_name(bufnr))
+                    local ok, stats = pcall(vim.uv.fs_stat, vim.api.nvim_buf_get_name(bufnr))
                     if ok and stats and stats.size > max then
                         return nil
                     end
-                    return { timeout_ms = 800, lsp_fallback = true }
+                    return { timeout_ms = 800, lsp_format = "fallback" }
                 end,
                 -- format_on_save = nil,
                 formatters_by_ft = {

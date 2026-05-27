@@ -119,8 +119,8 @@ map("n", "cs", "<Plug>(nvim-surround-change)", { desc = "Change surround" })
 -- Linting
 map("n", "<leader>d", "<Nop>", { desc = "Diagnostics" })
 map("n", "<leader>dl", vim.diagnostic.open_float, { desc = "Line diagnostics" })
-map("n", "<leader>dp", vim.diagnostic.goto_prev, { desc = "Prev diagnostic" })
-map("n", "<leader>dn", vim.diagnostic.goto_next, { desc = "Next diagnostic" })
+map("n", "<leader>dp", function() vim.diagnostic.jump { count = -1 } end, { desc = "Prev diagnostic" })
+map("n", "<leader>dn", function() vim.diagnostic.jump { count = 1 } end, { desc = "Next diagnostic" })
 
 -- LSP
 map("n", "K", vim.lsp.buf.hover, { desc = "Hover" })

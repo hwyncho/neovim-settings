@@ -23,7 +23,7 @@
 
 | 의존성                                           | 설명                               |
 | ------------------------------------------------ | ---------------------------------- |
-| [Neovim](https://neovim.io/) >= 0.10             | 텍스트 에디터                      |
+| [Neovim](https://neovim.io/) >= 0.12             | 텍스트 에디터                      |
 | [Git](https://git-scm.com/)                      | 버전 관리                          |
 | [Node.js](https://nodejs.org/) >= 18             | 다수의 LSP 서버에 필요             |
 | [ripgrep](https://github.com/BurntSushi/ripgrep) | 빠른 검색 (Telescope live grep 용) |

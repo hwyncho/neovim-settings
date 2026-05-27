@@ -23,7 +23,7 @@ A production-ready Neovim configuration for full-stack developers. This setup pr
 
 | Dependency                                       | Description                           |
 | ------------------------------------------------ | ------------------------------------- |
-| [Neovim](https://neovim.io/) >= 0.10             | Text editor                           |
+| [Neovim](https://neovim.io/) >= 0.12             | Text editor                           |
 | [Git](https://git-scm.com/)                      | Version control                       |
 | [Node.js](https://nodejs.org/) >= 18             | Required for many LSP servers         |
 | [ripgrep](https://github.com/BurntSushi/ripgrep) | Fast search (for Telescope live grep) |

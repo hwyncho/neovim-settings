@@ -29,7 +29,7 @@ if not vim.g.vscode then
         group = aug("HelmAndYamlls", { clear = true }),
         pattern = "helm",
         callback = function()
-            vim.defer_fn(function() vim.cmd "silent! LspStop ++force yamlls" end, 100)
+            vim.defer_fn(function() vim.lsp.enable("yamlls", false) end, 100)
         end,
     })
 
@@ -45,12 +45,7 @@ if not vim.g.vscode then
         group = aug("ClaudeCodeFileExplorer", { clear = true }),
         pattern = { "NvimTree", "neo-tree", "oil", "minifiles", "netrw" },
         callback = function()
-            vim.keymap.set(
-                "n",
-                "<leader>as",
-                "<cmd>ClaudeCodeTreeAdd<cr>",
-                { desc = "Add file to Claude", buffer = true }
-            )
+            vim.keymap.set("n", "<leader>as", "<cmd>ClaudeCodeTreeAdd<cr>", { desc = "Add file to Claude", buf = 0 })
         end,
     })
 end
